@@ -1,32 +1,59 @@
-import { Component, Prop, h } from '@stencil/core';
-import { format } from '../../utils/utils';
+import { Component, Prop, State, h, Host } from '@stencil/core';
 
 @Component({
   tag: 'todo-list',
   styleUrl: 'todo-list.css',
   shadow: true,
 })
-export class MyComponent {
-  /**
-   * The first name
-   */
-  @Prop() first: string;
+export class TodoListComponent {
+  @Prop() initTodoList: Array<{
+    todo: string;
+  }> = [
+    {
+      todo: 'todo1',
+    },
+    {
+      todo: 'todo2',
+    },
+    {
+      todo: 'todo3',
+    },
+  ];
 
-  /**
-   * The middle name
-   */
-  @Prop() middle: string;
+  @State() todoList: Array<{
+    todo: string;
+  }> = this.initTodoList;
 
-  /**
-   * The last name
-   */
-  @Prop() last: string;
+  addTodo = () => {
+    this.todoList = [
+      ...this.todoList,
+      {
+        todo: '',
+      },
+    ];
+  };
 
-  private getText(): string {
-    return format(this.first, this.middle, this.last);
-  }
+  handleChangeTodo = (event: CustomEvent<{ index: number; value: string }>) => {
+    const cloneTodoList = [...this.todoList];
+    cloneTodoList[event.detail.index].todo = event.detail.value;
+    this.todoList = cloneTodoList;
+  };
 
   render() {
-    return <div>Hello, World! I'm {this.getText()}</div>;
+    return (
+      <Host>
+        <div>TODO ITEMS</div>
+
+        <div>
+          {this.todoList.map((item, index: number) => (
+            <todo-item index={index} todo={item.todo} onChange={this.handleChangeTodo}></todo-item>
+          ))}
+        </div>
+
+        <div>
+          <button onClick={this.addTodo}>add todo</button>
+        </div>
+      </Host>
+    );
   }
 }

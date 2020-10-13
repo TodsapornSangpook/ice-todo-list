@@ -1,0 +1,22 @@
+.root {
+  width: 100%;
+  background-color: grey;
+  height: 50px;
+  border: 1px solid green;
+  margin: 5px 0px;
+}
+
+.flex-container {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  height: 100%;
+}
+
+button {
+  width: 100px;
+}
+
+input {
+  width: calc(100% - 110px);
+}
