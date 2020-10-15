@@ -27,5 +27,15 @@
   "dependencies": {
     "@stencil/core": "^2.0.1"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TodsapornSangpook/ice-todo-list.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/TodsapornSangpook/ice-todo-list/issues"
+  },
+  "homepage": "https://github.com/TodsapornSangpook/ice-todo-list#readme"
 }
