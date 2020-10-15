@@ -72,13 +72,14 @@ declare namespace LocalJSX {
     }
     interface TodoItem {
         "index"?: number;
-        "onChange"?: (event: CustomEvent<{ index: number; value: string }>) => void;
+        "onChangeTodo"?: (event: CustomEvent<{ index: number; value: string }>) => void;
         "todo"?: string;
     }
     interface TodoList {
         "initTodoList"?: Array<{
     todo: string;
   }>;
+        "onChangeList"?: (event: CustomEvent<Array<{ todo: string }>>) => void;
     }
     interface IntrinsicElements {
         "my-component": MyComponent;

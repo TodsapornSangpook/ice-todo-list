@@ -1,4 +1,4 @@
-import { Component, Prop, State, h, Host } from '@stencil/core';
+import { Component, Prop, State, h, Host, Watch, Event, EventEmitter } from '@stencil/core';
 
 @Component({
   tag: 'todo-list',
@@ -6,25 +6,21 @@ import { Component, Prop, State, h, Host } from '@stencil/core';
   shadow: true,
 })
 export class TodoListComponent {
+  @Event() changeList: EventEmitter<Array<{ todo: string }>>;
   @Prop() initTodoList: Array<{
     todo: string;
-  }> = [
-    {
-      todo: 'todo1',
-    },
-    {
-      todo: 'todo2',
-    },
-    {
-      todo: 'todo3',
-    },
-  ];
+  }> = [];
 
   @State() todoList: Array<{
     todo: string;
   }> = this.initTodoList;
 
-  addTodo = () => {
+  @Watch('todoList')
+  watchHandler(newValue: Array<{ todo: string }>) {
+    this.changeList.emit(newValue);
+  }
+
+  handleAddTodo = () => {
     this.todoList = [
       ...this.todoList,
       {
@@ -46,12 +42,12 @@ export class TodoListComponent {
 
         <div>
           {this.todoList.map((item, index: number) => (
-            <todo-item index={index} todo={item.todo} onChange={this.handleChangeTodo}></todo-item>
+            <todo-item index={index} todo={item.todo} onChangeTodo={this.handleChangeTodo}></todo-item>
           ))}
         </div>
 
         <div>
-          <button onClick={this.addTodo}>add todo</button>
+          <button onClick={this.handleAddTodo}>add todo</button>
         </div>
       </Host>
     );

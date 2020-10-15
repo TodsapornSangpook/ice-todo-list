@@ -9,19 +9,19 @@ export class TodoItemComponent {
   @Prop() index: number;
   @Prop() todo: string;
   @State() mode: 'view' | 'edit' = 'view';
-  @Event() change: EventEmitter<{ index: number; value: string }>;
+  @Event() changeTodo: EventEmitter<{ index: number; value: string }>;
 
   handleChangeTodo = (evt: Event) => {
     const target = evt.target as HTMLTextAreaElement;
     const value: string = target.value;
-    this.change.emit({ index: this.index, value: value });
+    this.changeTodo.emit({ index: this.index, value: value });
   };
 
-  handleClickView = (event: MouseEvent) => {
+  handleClickView = () => {
     this.mode = 'view';
   };
 
-  handleClickEdit = (event: MouseEvent) => {
+  handleClickEdit = () => {
     this.mode = 'edit';
   };
 
