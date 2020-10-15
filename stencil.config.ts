@@ -2,6 +2,7 @@ import { Config } from '@stencil/core';
 
 export const config: Config = {
   namespace: 'ice-todo-list',
+  bundles: [{ components: ['my-component'] }, { components: ['todo-list', 'todo-item'] }],
   outputTargets: [
     {
       type: 'dist',
