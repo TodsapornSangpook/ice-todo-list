@@ -28,7 +28,9 @@
     "@stencil/core": "^2.0.1"
   },
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "@stencil/react-output-target": "0.0.9"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TodsapornSangpook/ice-todo-list.git"
