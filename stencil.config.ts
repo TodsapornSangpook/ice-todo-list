@@ -6,8 +6,8 @@ export const config: Config = {
   bundles: [{ components: ['my-component'] }, { components: ['todo-list', 'todo-item'] }],
   outputTargets: [
     reactOutputTarget({
-      componentCorePackage: 'component-library',
-      proxiesFile: '../component-library-react/src/components.ts',
+      componentCorePackage: 'ice-todo-list',
+      proxiesFile: '../ice-todo-list/react-component/components.ts',
     }),
     {
       type: 'dist',
