@@ -1,4 +1,5 @@
 import { Component, Prop, State, h, Host, Watch, Event, EventEmitter } from '@stencil/core';
+import { TodoInterface, EventChangeTodoInterface } from './todo-list.interface';
 
 @Component({
   tag: 'todo-list',
@@ -6,7 +7,7 @@ import { Component, Prop, State, h, Host, Watch, Event, EventEmitter } from '@st
   shadow: true,
 })
 export class TodoListComponent {
-  @Event() changeList: EventEmitter<Array<{ todo: string }>>;
+  @Event() changeList: EventEmitter<Array<TodoInterface>>;
   @Prop() initTodoList: Array<{
     todo: string;
   }> = [];
@@ -16,7 +17,7 @@ export class TodoListComponent {
   }> = this.initTodoList;
 
   @Watch('todoList')
-  watchHandler(newValue: Array<{ todo: string }>) {
+  watchHandler(newValue: Array<TodoInterface>) {
     this.changeList.emit(newValue);
   }
 
@@ -29,7 +30,7 @@ export class TodoListComponent {
     ];
   };
 
-  handleChangeTodo = (event: CustomEvent<{ index: number; value: string }>) => {
+  handleChangeTodo = (event: CustomEvent<EventChangeTodoInterface>) => {
     const cloneTodoList = [...this.todoList];
     cloneTodoList[event.detail.index].todo = event.detail.value;
     this.todoList = cloneTodoList;

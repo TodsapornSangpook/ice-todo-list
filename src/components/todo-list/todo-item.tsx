@@ -1,4 +1,5 @@
 import { Component, Prop, State, Event, EventEmitter, h } from '@stencil/core';
+import { EventChangeTodoInterface } from './todo-list.interface';
 
 @Component({
   tag: 'todo-item',
@@ -9,7 +10,7 @@ export class TodoItemComponent {
   @Prop() index: number;
   @Prop() todo: string;
   @State() mode: 'view' | 'edit' = 'view';
-  @Event() changeTodo: EventEmitter<{ index: number; value: string }>;
+  @Event() changeTodo: EventEmitter<EventChangeTodoInterface>;
 
   handleChangeTodo = (evt: Event) => {
     const target = evt.target as HTMLTextAreaElement;

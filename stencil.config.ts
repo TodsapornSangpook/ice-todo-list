@@ -7,7 +7,7 @@ export const config: Config = {
   outputTargets: [
     reactOutputTarget({
       componentCorePackage: 'ice-todo-list',
-      proxiesFile: '../ice-todo-list/react-component/components.ts',
+      proxiesFile: '../ice-todo-list/dist/components.ts',
     }),
     {
       type: 'dist',
