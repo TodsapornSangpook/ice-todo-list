@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { EventChangeTodoInterface, TodoInterface } from "./components/todo-list/todo-list.interface";
 export namespace Components {
     interface MyComponent {
         /**
@@ -72,14 +73,14 @@ declare namespace LocalJSX {
     }
     interface TodoItem {
         "index"?: number;
-        "onChangeTodo"?: (event: CustomEvent<{ index: number; value: string }>) => void;
+        "onChangeTodo"?: (event: CustomEvent<EventChangeTodoInterface>) => void;
         "todo"?: string;
     }
     interface TodoList {
         "initTodoList"?: Array<{
     todo: string;
   }>;
-        "onChangeList"?: (event: CustomEvent<Array<{ todo: string }>>) => void;
+        "onChangeList"?: (event: CustomEvent<Array<TodoInterface>>) => void;
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
